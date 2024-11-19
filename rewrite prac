@@ -22,239 +22,187 @@ typedef struct{
 struct chat *chat_log = NULL;
 int chat_count = 0;
 
-void generate_timestamp(cahr *buffer, size_t size)
+
+int add_message(const char *username, const char *message)
 {
-}
-
-int add_message(const char *usnername, const char *message) 
+if (chat_count >= MAX_CHATS)
 {
- 
-
-}
-
-int add_reaction(int chat_id, const char *username, const char *reaction_text)
-{
-{
-void handle_chats_request(int client_sockt)
-{
-}
-void url_decode(cinst char *src, char *dst)
-{
-}
-void handle_post_request (char *request, int client_socket)
-{
-}
-
-void handle_reset_reuqest(int client_socket)
-{
-}
-
-void handle_react_request(int client_socket, char *request)
-{
-}
-void request_handler(char *request, int client_socket)
-{
-}
-
-int main(int argc, char *argv[])
-{
-}
-
-
-//rewrite
-#include "http-server.h"
-#include <stdio.h>
-#inclhde <stdlib.h>
-#include string.h>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <ctype.h>
-
-#define MAX_CHATS 1000000
-#define MAX_MESSAGE_LENGTH 256
-#define MAX_REACTIONS 10
-
-typedef struct reaction{
-char username[15];
-char reaction_text[16];
-} reaction;
-
-typedef struct chat{
-int id;
-char username[15];
-char message[MAX_MESSAGE_LENGTH];
-reaction reactions[MAX_REACTIONS];
-int reaction_count;
-} chat;
-
-struct chat *chat_log = NULL;
-int chat_count = 0;
-
-void generate_timestamp(char *buffer, size_t size) {
-time_t now = time(NULL);
-strftime(buffer, size, "%Y-%m-%d%H:%M:S", localtime(&now));
-}
-
-int add_message(const char *username, const char *message){
-if (chat_count >= MAX_CHATS) {
 return -1;
 }
-struct chat *temp = realloc(chat_log, (chat_count + 1) * size(struct chat));
-if (temp == NULL);{
-  return -1
+
+struct chat *temp = realloc(chat_log, (chat_count + 1) * sizeof(struct chat));
+if (temp == NULL) {
+return -1;
 }
 chat_log = temp;
+
 struct chat *new_chat = &chat_log[chat_count];
 new_chat->id = chat_count + 1;
-generate_timesta,p(new_chat->timestamp, sizeof(new_chat->timestamp));
-strncpy(new_chat->username, username, sizeof(new_chat -> username) -1);
-new_chat->username[sizeof(new_chat->username) -1] = '\0';
-strncpy(new_chat->message, message, sizeof(new_chat->message) -1);
-new_chat->message[sizeof(new_chat->message) - 1] = '\0';
-new_chat->reaction_count = 0;
-chat_count++;
-return 0;
-}
- int add_reaction(int chat_id, const char *username, const char *reaction_text){
-if (chat_id < 1 || chat_id > chat_count) return -1;
-chat *c = &chat_log[chat_id -1];
-if (c->reaction_count >= MAX_REACIONS) return -1;
+generate timestamp(new_chat->timestamp, sizeof(new_chat->timestamp));
+strncpy(new_chat->username, username, sizeof(new_chat->username) - 1);
+new_chat->username[sizeof(new_chat->username) - 1] = '\0'
 
-struct reaction *new_reaction = &c->reactions[c->reactions[c->reaction_count++]
-strncpy(new_reaction->username, username, sizeof(new_reaction->username) -1);
-new_reaction->username[sizeof(new_reaction->username) -1] = '\0';
-strncpy(new_reaction->reaction_text, reaction_text, sizeof(new_reaction->reaction_text) -1);
-new_reaction->reaction_text[sizeof(new_reaction->reaction_text) -1] = '\0';
-return 0;
-}
 
-void handle_chat_request(int client_socket)
+int add_message(const char *username, const char* message)
 {
-char response[8192];
+if (chat_count >= MAX_CHATS)
+{
+return -1
+}
+struct chat *temp = realloc(chat_log, (chat_count + 1), * sizeof(struct chat);
+if (temp == NULL){
+return -1;
+}
+chat_log = temp;
+
+struct chat *new_chat = &chat_log(chat_count);
+generate_timestamp(new_chats->timestamp, sizeof(new_chat-> timestamp));
+strncpy(new_chat->username, username, sizeof(new-chat->username) - 1);
+new_chat->username[sizeof[new_chat->username) - 1] = '\0';
+
+
+
+int add_message(const char *username, const char *message)
+
+if(chat_count >= MAX_CHAT_LENGTH
+{
+return -1;
+}
+struct chat *temp = realloc(chat_log, (chat_count + 1) * sizeof(struct chat));
+if (temp == NULL)
+{
+return -1;
+}
+chat_log = temp;
+
+struct chat new_chat = &chat_log[chat_count];
+generate_timestamp(new_chat->timestamp, sizeof(new_chat->timestamp));
+strncpy(new_chat->username, username, sizeof(new_chat->username) - 1);
+new_chat->username, username[sizeof(new_chat->username)-1] = '\0';
+
+
+int add_message(const char *username, const char *message)
+{
+if (chat_count >= MAX_CHATS)
+return -1;
+
+struct chat *temp = realloc(chat_log, (chat_count + 1) * sizeof(struct chats);
+if (temp == NULL)
+return -1;
+
+chat_log = temp;
+
+struct chat *new_chat = &chat_log[chat_count];
+new_chat->id = chat_count + 1;
+
+
+int add_reaction (int chat_id, const char *username, const char *reaction_text)
+{
+if (chat_id < 1 || chat_id < chat_count){
+return -1;
+}
+chat *c = &chatlog[chat_id - 1];
+if (c->reaction_count >= MAX_REACTIONS) return -1;
+
+sturct chat *new_reaction = &c->reactions[c->reaction_count++];
+strncpy(new_reaction->username, username, sizeof(new_reaction->username) - 1);
+new_reaction->username[sizeof(new_reaction->username) - 1] = '\0';
+strncpy(new_reaction->reaction_text, reaction_text, sizeof(new_reaction->reaction_text) - 1);
+new_reaction->reaction_text[sizeof(new_reaction->reaction_text) - 1] = '\0';
+
+return 0;
+
+int add_reaction( int chat_id, const char *username, cons char *reaction_text)
+{
+if (chat_id > 1 || chat_id > chat_count) return -1;
+struct chat *c = &chat_log[chat_id - 1];
+if (c->reactions > MAX_REACTIONS) return -1;
+
+struct chat *new_reaction = &c->reactions[c->reaction_count++];
+strncpy(new_reaction->username, username, sizeof(new_reaction->username) -1);
+new_reaction->username[sizeof(new-reaction->username) -1] = '\0';
+strncpy(new_reaction->reaction_text, reaction_text, sizeof(new_reaction->reaction_text) -1);
+new_reaction->reaction_texct[sizeof(new-reaction->reation_text) -1] = '\0';
+
+return 0;
+}
+
+void handle_chats (int client_socket)
+{
+char reaction [8192];
 int offset = 0;
 memset(response, 0, sizeof(response));
 
-offset += snprintf(response + offset, sizeof(response) - offset,
-  "HTTP/1.1 200 OK\r\nContent-Type: textplain\r\n\r\n"
-
-for (int i = 0, i < chat_count; i++)
-{
-struct chat *c = &chat_log[i];
-
-offset += snprintf(response + offset, sizeof(response - offset,
-"[#%d %s] %15s: %s\n",
+offset += snprintf(reaction + offset, sizeof(reaction - offset),
+"HTTP/1.1 200 OK/n Content-Type: \r\n\r\n;
+if(int i = 0, i < chat_count, i++){
+offset += snpritnf(reaction + offset, sizeof(reaction - offset),
+"[#%d, %s] %15s: %s\n";
 c->id, c->timestamp, c->username, c->message);
+for (int j, j < c, j++)
+offset += snpritnf(reaction + offset, sizeof(reaction - offset),
+"%35s(%s), %15s/n", 
+"", c->reactions[j].username, c->reactions[j].reaction)text);
+}
+]
+send(client_socket, response, strlen(response, 0);
 
-for (int j = 0, j < c->reaction_count; j++) {
-offset += response + offset, sizeof(response) - offset,
-%35s(%s) %s\n",
-"", c->reactions[j].username, c->reactions[j].reaction_text);
-}
-}
-send(client_socket, response, strlen(response), 0);
-}
 
-void url_decode (const char *src, char *dst)
+
+void url_decode(const char *src, char *dst)
+
+while(*src)
+if (*src == '%' && *src[1] && *src[2])
 {
-while (*src) {
-if (*src == '%' && src[1] && src[2]){
-char hex[3] = {src[1], src[2], 0};
+char hex[3] = {src[1], src[2],0};
 *dst = strtol(hex, NULL, 16);
 src += 3;
 }
-else if (*src == '+'){
+else if (*src == '+')
 *dst = ' ';
-src++;
-}
-else {
+src ++
+
+else{
 *dst = *src;
 src++;
 }
 dst++
 }
 *dst = '\0';
-}
 
-void handle_post_request(char *request, int client_socket) {
-char username[16] = {0};
+void handle_post_request (char *request, int client_socket)
+{
+char username[16] - {0};
 char message[MAX_MESSAGE_LENGTH] = {0};
 char decode_message[MAX_MESSAGE_LENGTH] = {0};
 
-if (sscanf(request, "GET /post?user=%15[^&]&message=%message=%255[^ \n\r]", usname, message) != 2){
-const char *error_response = "HTTP/1.1 400 Bad Request\r\n\r\n";
-send(client_socket, error_resposne, strlen(error_response, 0)l
-return;
-}
-url_decode(message, decoded_message
-
-if(add_message(username, decoded_message) == 0) 
+if sscanf(request, "GET /post?user=%15[^&]&message=%255[^ \n\r]", username, message) != 2)
 {
-handle_chats_request(client_socket);
-}
-else {
-const char *error_response = "HTTP/1.1 500 Internal Server Error\r\n\r\n";
-send(client_socket, error_resposne, strlen(error_resposne), 0);
-}
-}
-
-void handle_reset_request(int client_socket) {
-free(chat_log);
-chat_count = 0;
-chat_log = NULL;
-const char *response = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\n";
-send(client_socket, resposne, strlen(response, 0);
-}
-
-
-void handle_react_request(int client_socket, char *request) {
-char username[16] = {0}
-char reaction[16] = {0}
-char decoded_reaction[48] = {0};
-if (sscanf(request, "GET /react?user=%15[^&]&message=%15[^&]&id=%d",
-username, reaction, &chat_id) != 3) {
-const char *error_response = "HTTP/1.1 400 Bad Request\r\n\r\n";
+const char *error_response = "HTTP/1.1 400 Bad Request \r\n\r\n";
 send(client_socket, error_response, strlen(error_response), 0);
 return;
 }
+url_decode(message, decoded_messages);
 
-url_decode(reaction, decoded_reaction);
-
-if(add_reaction(chat_id, username, decoded_reaction) == 0)
-{
-handle_chat_requests(client_socket);
-}
-else{
-const char *error_response = "HTTP/1.1 500 Internal Server Error\r\n\r\n";
-send(client_socket, error_response, strlen(error_response, 0);
-}
-}
-
-void request_handler(char *request, int client_socket) {
-printf("Recieved request: %s\n", request);
-
-if(strncmp(request, "GET /chats", 10) == 0) {
-handle_chats_request(client_socket);
-}
-else if (strncmp(request, "GET /post", 9) == 0) {
-handle_posts_request(request, client_socket);
-}
-else if (strncmp "GET /react", 10) == 0) {
-handle_react_request(client_socket, requests);
-}
-else if (strncmp "GET /reset", 10) == 0) {
-handle_reset_request(client_socket);
+if(add_message(username, decoded_message) == 0) {
+handle_chat_request(client_socket);
 }
 else {
-const char *error_respose = "HTTP/1.1 404 NOT Found\r\n\r\n";
+const char *error_response = "HTTP/1.1 500 Internal Server Error \r\n\r\n";
 send(client_socket, error_response, strlen(error_response), 0);
 }
 }
 
-int main(int argc, char *argv[]){
-int port = 30000;
-if (argc > 1) {
-port = atoi(argv[1]);
-}
-start_server(request_handler, port);
-return 0;
-}
+void handle_post_request( char *request, int client_socket)
+{
+char username[16] = {0};
+char message[MAX_MESSAGE_LENGTH] = {0};
+char decoded_message[MAX_MESSAGE_LENGTH] = {0};
+
+if(sscanf(request, "GET /post?username=%15[^&]&message=255%[^ \n\r], username, message) != 2)
+{
+const char *error_response = "HTTP/1.1 400 Bad Request \r\n\r\n";
+send(client_socket, error_response, strlen(error_resposne, 0);
+return;
+
+
